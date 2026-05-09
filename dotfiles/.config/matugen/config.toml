@@ -1,0 +1,36 @@
+[config]
+
+[templates.fcitx5]
+input_path = "/home/usu171/.config/matugen/templates/fcitx5-theme.conf"
+output_path = "/home/usu171/.local/share/fcitx5/themes/Matugen/theme.conf"
+post_hook = "systemctl --user restart fcitx5-daemon.service || true"
+
+[templates.fastfetch]
+input_path = "/home/usu171/.config/matugen/templates/fastfetch-config.jsonc"
+output_path = "/home/usu171/.config/fastfetch/config.jsonc"
+
+[templates.yazi]
+input_path = "/home/usu171/.config/matugen/templates/yazi-theme.toml"
+output_path = "/home/usu171/.config/yazi/theme.toml"
+
+[templates.fuzzel]
+input_path = "/home/usu171/.config/matugen/templates/fuzzel.ini"
+output_path = "/home/usu171/.config/fuzzel/colors.ini"
+
+[templates.niri]
+input_path = "/home/usu171/.config/matugen/templates/niri-colors.kdl"
+output_path = "/home/usu171/.config/niri/colors.kdl"
+post_hook = "niri msg action load-config-file || true"
+
+[templates.alacritty]
+input_path = "/home/usu171/.config/matugen/templates/alacritty-colors.toml"
+output_path = "/home/usu171/.config/alacritty/colors.toml"
+
+[templates.kitty]
+input_path = "/home/usu171/.config/matugen/templates/kitty.conf"
+output_path = "/home/usu171/.config/kitty/themes/Matugen.conf"
+
+[templates.kdeglobals]
+input_path = "/home/usu171/.config/matugen/templates/kdeglobals.ini"
+output_path = "/home/usu171/.config/kdeglobals"
+

@@ -1,0 +1,38 @@
+{
+  "nix.enableLanguageServer": true,
+
+  "nix.serverPath": "nixd", // or nil
+
+  "nix.serverSettings": {
+    "nixd": {
+      "nixpkgs": {
+        "expr": "import <nixpkgs> {}"
+      },
+
+      "options": {
+        "nixos": {
+          "expr": "(builtins.getFlake \"${workspaceFolder}\").nixosConfigurations.unix.options"
+        }
+      },
+
+      "formatting": {
+        "command": ["nixfmt"]
+      }
+  },
+
+    "nil": {
+      "formatting": {
+        "command": ["nixfmt"]
+      }
+    }
+
+  },
+
+  "[nix]": {
+    "editor.defaultFormatter": "jnoortheen.nix-ide"
+  },
+
+  "nix.formatterPath": "nixfmt",  // or alejandra 如果你使用了上述LSP插件设置，那么该配置就不被使用
+  "nixEnvSelector.useFlakes": true,
+  "nixEnvSelector.nixFile": "${workspaceFolder}/flake.nix"
+}

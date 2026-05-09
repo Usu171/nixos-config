@@ -1,0 +1,103 @@
+// include "./colors.kdl"
+include "./dms/colors.kdl"
+include "./dms/alttab.kdl"
+include "./dms/outputs.kdl"
+include "./binds.kdl"
+include "./supertab.kdl"
+include "./windowrules.kdl"
+
+input {
+    keyboard {
+        xkb {
+            layout "us"
+        }
+
+        numlock
+    }
+
+    touchpad {
+        tap
+        natural-scroll
+        dwt
+    }
+
+    mouse {
+    }
+
+    workspace-auto-back-and-forth
+}
+
+cursor {
+    xcursor-theme "Bibata-Modern-Ice"
+    xcursor-size 24
+}
+
+environment {
+    QT_QPA_PLATFORMTHEME "qt6ct"
+    QT_QPA_PLATFORMTHEME_QT6 "qt6ct"
+}
+
+layout {
+    always-center-single-column
+
+    gaps 10
+    center-focused-column "never"
+    default-column-width { proportion 0.5; }
+
+    preset-column-widths {
+        proportion 0.25
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+        proportion 0.75
+    }
+
+    focus-ring {
+        width 4
+    }
+
+    border {
+        off
+        width 4
+    }
+
+    shadow {
+        on
+        softness 30
+        spread 2
+        offset x=-4 y=-4
+    }
+
+    // Keep workspace background transparent so DMS wallpaper layers can live on the backdrop.
+    background-color "transparent"
+}
+
+hotkey-overlay {
+     skip-at-startup
+}
+
+
+// 隐藏窗口标题栏
+prefer-no-csd
+
+screenshot-path "~/Pictures/Screenshots/%Y-%m-%d_%H-%M-%S.png"
+
+animations {
+}
+
+debug {
+    // Allows DMS notifications and window activation.
+    honor-xdg-activation-with-invalid-serial
+}
+
+// Keep DMS wallpaper layers fixed on the backdrop rather than attached to workspaces.
+layer-rule {
+    match namespace="^dms:.*wallpaper$"
+    place-within-backdrop true
+}
+
+overview {
+    workspace-shadow {
+        off
+    }
+}

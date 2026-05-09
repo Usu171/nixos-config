@@ -1,0 +1,200 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+$os\
+[](bg:#1c1c1c fg:#6c6c6c)\
+$directory\
+$git_branch\
+$git_status\
+$package\
+
+[](bg:#1c1c1c fg:#6c6c6c)\
+
+$status\
+$cmd_duration\
+$nix_shell\
+$direnv\
+$nodejs\
+$rust\
+$golang\
+$python\
+$conda\
+$username\
+[@](fg:#d7af87 bg:#1c1c1c)\
+$hostname\
+$time\
+
+[ ](fg:#1c1c1c)\
+\n$character"""
+
+# right_format = """
+# [ ](fg:#1c1c1c)\
+
+# """
+
+add_newline = false
+
+[directory]
+style = "fg:#00afff bg:#1c1c1c"
+format = "[ $read_only $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+truncate_to_repo = true
+fish_style_pwd_dir_length = 1
+read_only = ""
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold green)"
+
+[git_branch]
+symbol = ""
+style = "fg:#5fd700 bg:#1c1c1c"
+format = '[[](fg:#6c6c6c bg:#1c1c1c) $symbol $branch ]($style)'
+
+[git_status]
+style = "bg:#1c1c1c"
+ahead = '⇡$count'
+behind = '⇣$count'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+up_to_date = '[✓](fg:#5fd700 bg:#1c1c1c)'
+modified = '[!$count](fg:#d7af00 bg:#1c1c1c)'
+staged = '[+$count](fg:#d7af00 bg:#1c1c1c)'
+untracked = '[?$count](fg:#00afff bg:#1c1c1c)'
+deleted = '[✘$count](red bg:#1c1c1c)'
+renamed = '[»$count](yellow bg:#1c1c1c)'
+format = '[$all_status$ahead_behind ]($style)'
+
+[package]
+symbol = "󰏖"
+style = "fg:#ff8700 bg:#1c1c1c"
+format = '[$symbol $version ]($style)'
+
+
+[status]
+disabled = false
+map_symbol = true
+style = "blue bg:#1c1c1c"
+failure_style= "red bg:#1c1c1c"
+symbol = '[✘](red bg:#1c1c1c)'
+success_symbol = ''
+sigint_symbol = '[✘](red bg:#1c1c1c)'
+format = '[ $symbol $common_meaning$signal_name( $maybe_int)]($style)'
+
+[cmd_duration]
+disabled = false
+style = "fg:#a8a8a8 bg:#1c1c1c"
+format = '[  $duration]($style)'
+
+[nix_shell]
+disabled = false
+style = "bold blue bg:#1c1c1c"
+impure_msg = '[i](bold red bg:#1c1c1c)'
+pure_msg = '[p](bold green bg:#1c1c1c)'
+unknown_msg = '[u](bold yellow bg:#1c1c1c)'
+format = '[  $state( $name)]($style)'
+
+[direnv]
+disabled = false
+style = "fg:#3692fc bg:#1c1c1c"
+loaded_msg = ''
+unloaded_msg = ''
+allowed_msg = ''
+not_allowed_msg = ''
+format = '[ [$symbol](bold fg:#3692fc bg:#1c1c1c)$loaded/$allowed]($style)'
+
+
+[nodejs]
+symbol = ""
+style = "fg:#45bf17 bg:#1c1c1c"
+format = '[ $symbol $version]($style)'
+
+[rust]
+symbol = ""
+style = "fg:#769ff0 bg:#1c1c1c"
+format = '[ $symbol $version]($style)'
+
+[golang]
+symbol = ""
+style = "fg:#769ff0 bg:#1c1c1c"
+format = '[ $symbol $version]($style)'
+
+[python]
+symbol = ""
+style = "fg:#00afaf bg:#1c1c1c"
+format = '[ $symbol $virtualenv]($style)'
+
+[conda]
+symbol = ""
+style = "fg:#00afaf bg:#1c1c1c"
+format = '[ $symbol $environment]($style)'
+
+[username]
+disabled = false
+show_always = true
+style_root = "#d7af00 bg:#1c1c1c bold"
+style_user = "fg:#d7af87 bg:#1c1c1c"
+format = '[ $user]($style)'
+
+[hostname]
+disabled = false
+ssh_only = false
+style = "fg:#d7af87 bg:#1c1c1c"
+format = '[$hostname]($style)'
+
+[time]
+disabled = false
+time_format = "%T"
+style = "fg:#a0a9cb bg:#1c1c1c"
+format = '[  $time ]($style)'
+
+[os]
+disabled = false
+style = "fg:#eeeeee bg:#1c1c1c"
+format = '[ $symbol ]($style)'
+
+[os.symbols]
+Alpaquita = ""
+Alpine = ""
+AlmaLinux = ""
+Amazon = ""
+Android = ""
+Arch = ""
+Artix = ""
+CentOS = ""
+Debian = ""
+DragonFly = ""
+Emscripten = ""
+EndeavourOS = ""
+Fedora = ""
+FreeBSD = ""
+Garuda = "󰛓"
+Gentoo = ""
+HardenedBSD = "󰞌"
+Illumos = "󰈸"
+Kali = ""
+Linux = ""
+Mabox = ""
+Macos = ""
+Manjaro = ""
+Mariner = ""
+MidnightBSD = ""
+Mint = ""
+NetBSD = ""
+NixOS = ""
+OpenBSD = "󰈺"
+openSUSE = ""
+OracleLinux = "󰌷"
+Pop = ""
+Raspbian = ""
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
+RockyLinux = ""
+Redox = "󰀘"
+Solus = "󰠳"
+SUSE = ""
+Ubuntu = ""
+Unknown = ""
+Void = ""
+Windows = ""

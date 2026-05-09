@@ -1,0 +1,28 @@
+{
+  ...
+}:
+
+{
+  imports = [
+    ../../modules/profiles/nixos.nix
+    ../../packages/nixos.nix
+    ./hardware-configuration.nix
+  ];
+
+  networking.hostName = "nixos";
+
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
+
+  networking.firewall.allowedTCPPorts = [
+    22
+    8317
+  ];
+
+  system.stateVersion = "25.05"; # Did you read the comment?
+}

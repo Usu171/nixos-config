@@ -1,0 +1,50 @@
+enable_wheel: true
+
+virtual_modifiers:
+  - F18
+
+modmap:
+  - name: CapsLock layer
+    remap:
+      CapsLock:
+        held: F18
+        alone: Esc
+        free_hold: true
+
+  - name: Esc to CapsLock
+    remap:
+      Esc: CapsLock
+
+keymap:
+  # CapsLock 作为前缀层：z -> Esc, hjkl -> 方向键。
+  # xremap 默认会把附带的 Shift/Ctrl/Alt 等修饰键透传到输出。
+  - name: CapsLock layer bindings
+    remap:
+      F18-z: Esc
+      F18-h: left
+      F18-j: down
+      F18-k: up
+      F18-l: right
+
+  # 左 Win 作为鼠标层
+  - name: LWin mouse layer
+    remap:
+      Super_L-c: BTN_MIDDLE
+
+
+  # 右 Win 作为鼠标层
+  - name: RWin mouse layer
+    remap:
+      # Super_R-apostrophe: XUpScroll
+      # Super_R-slash: XDownScroll
+      # Super_R-leftbrace: XLeftScroll
+      # Super_R-rightbrace: XRightScroll
+
+      Super_R-c: BTN_MIDDLE
+      Super_R-backslash: BTN_MIDDLE
+
+      Super_R-backspace: BTN_LEFT
+      Super_R-enter: BTN_RIGHT
+
+      Super_R-j: BTN_LEFT
+      Super_R-o: BTN_RIGHT
