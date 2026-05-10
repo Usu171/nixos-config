@@ -32,7 +32,9 @@ let
       specialArgs = {
         inherit inputs username homeDirectory;
       };
-      inherit modules;
+      modules = [
+        { system.configurationRevision = self.rev or self.dirtyRev or null; }
+      ] ++ modules;
     };
 
   commonArgs = {
