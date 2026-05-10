@@ -11,6 +11,7 @@
     ../podman.nix
     ../portal.nix
     ../services/slurm.nix
+    ../services/tailscale.nix
     ../desktop/niri.nix
   ];
 }
