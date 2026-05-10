@@ -28,6 +28,7 @@
     enable = true;
     settings.PasswordAuthentication = true;
   };
+  programs.mosh.enable = true;
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
