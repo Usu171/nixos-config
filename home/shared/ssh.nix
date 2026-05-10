@@ -35,7 +35,6 @@
     };
   };
 
-
   # ssh config 权限问题 https://github.com/nix-community/home-manager/issues/322#issuecomment-3730266609
   home.file = {
     # home-manager wrongly thinks it doesn't manage (and thus shouldn't clobber) this file due to the activation script

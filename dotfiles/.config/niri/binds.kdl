@@ -38,7 +38,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // alt+tab切换窗口
-    // Alt+Tab hotkey-overlay-title="跳转窗口 swich windows" {spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "windows";}
+    // Alt+Tab hotkey-overlay-title="跳转窗口 switch windows" {spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "windows";}
     // 特殊功能
     Mod+F1 hotkey-overlay-title="开关输入法 Toggle fcitx" {spawn-sh "pkill fcitx5 || fcitx5 ";}
     // 临时开一个浮动终端
@@ -89,7 +89,7 @@ binds {
     Mod+K     { focus-window-up; }
     Mod+L     { focus-column-right; }
 
-    // 移动colume（列）
+    // 移动column（列）
     // super+ctrl+方向键
     Mod+Ctrl+Left hotkey-overlay-title=null { move-column-left; }
     Mod+Ctrl+Right hotkey-overlay-title=null { move-column-right; }
@@ -108,13 +108,13 @@ binds {
     Mod+Ctrl+S { move-window-down; }
     Mod+Ctrl+W { move-window-up; }
  
-    // 切换到第一个colume
+    // 切换到第一个column
     Mod+Home { focus-column-first; }
-    // 切换到最后一个colume
+    // 切换到最后一个column
     Mod+End  { focus-column-last; }
-    // 移动colume到第一个
+    // 移动column到第一个
     Mod+Ctrl+Home { move-column-to-first; }
-    // 移动colume到最后一个
+    // 移动column到最后一个
     Mod+Ctrl+End  { move-column-to-last; }
 
     // 切换显示器聚焦
@@ -128,7 +128,7 @@ binds {
     Mod+Shift+J     { focus-monitor-down; }
     Mod+Shift+K     { focus-monitor-up; }
     Mod+Shift+L     { focus-monitor-right; }
-    // 跨显示器移动colume
+    // 跨显示器移动column
     Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
     Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
     Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
@@ -169,25 +169,25 @@ binds {
     // mod+滚轮上下 左右切换聚焦
     Mod+WheelScrollDown   hotkey-overlay-title="滚轮切换聚焦 Change focus with wheel"   { focus-column-right; }
     Mod+WheelScrollUp        { focus-column-left; }
-    // 再加上ctrl移动colume
+    // 再加上ctrl移动column
     Mod+Ctrl+WheelScrollDown { move-column-right; }
     Mod+Ctrl+WheelScrollUp   { move-column-left; }
 
-    // mod+左右方括号 移动窗口（不是移动colume，是允许移动到另一个colume的窗口移动）
+    // mod+左右方括号 移动窗口（不是移动column，是允许移动到另一个column的窗口移动）
     Mod+BracketLeft  { consume-or-expel-window-left; }
     Mod+BracketRight { consume-or-expel-window-right; }
     // mod+A/D 同效果
-    Mod+A hotkey-overlay-title="向左移动窗口 Move window to left between columes" { consume-or-expel-window-left; }
-    Mod+D hotkey-overlay-title="向右移动窗口 Move window to right between columes" { consume-or-expel-window-right; }
+    Mod+A hotkey-overlay-title="向左移动窗口 Move window to left between columns" { consume-or-expel-window-left; }
+    Mod+D hotkey-overlay-title="向右移动窗口 Move window to right between columns" { consume-or-expel-window-right; }
 
-    // mod+逗号/句号 把窗口合并或者踢出当前的colume
+    // mod+逗号/句号 把窗口合并或者踢出当前的column
     Mod+Comma  { consume-window-into-column; }
     Mod+Period { expel-window-from-column; }
     // mod+shift+A/D 同效果
     Mod+Shift+A  { consume-window-into-column; }
     Mod+Shift+D { expel-window-from-column; }
     
-    // 开启colume的标签页模式
+    // 开启column的标签页模式
     // Mod+Shift+X { toggle-column-tabbed-display; }
     Mod+X { toggle-column-tabbed-display; }
     // mod+鼠标侧键 上下切换聚焦
@@ -206,7 +206,7 @@ binds {
 
     // 增加窗口宽度占满空闲空间
     Mod+Ctrl+F { expand-column-to-available-width; }
-    // 居中当前聚焦的colume
+    // 居中当前聚焦的column
     Mod+B { center-column; }
     Mod+Ctrl+B { center-visible-columns; }
 
