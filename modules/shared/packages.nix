@@ -49,7 +49,6 @@
     procs
     mtr
 
-
     playerctl
     ddcutil
     dnsutils
