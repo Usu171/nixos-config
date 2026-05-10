@@ -26,6 +26,7 @@
     zsh
     fd
     sd
+    jq
     ripgrep
     nushell
     starship
