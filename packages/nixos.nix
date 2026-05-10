@@ -9,11 +9,6 @@ let
 in
 {
   programs.firefox.enable = true;
-  programs.clash-verge = {
-    enable = true;
-    autoStart = true;
-  };
-
   environment.systemPackages = with pkgs; [
     myPython
     google-chrome

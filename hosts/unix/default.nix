@@ -15,7 +15,6 @@
     "nct6775"
     "i2c-dev"
     "uninput"
-    "tun"
   ];
 
   hardware.bluetooth.enable = true;

@@ -5,7 +5,7 @@
 
   nix.settings.trusted-users = [
     "root"
-    username
+    username # "@wheel"
   ];
 
   nix.settings = {
