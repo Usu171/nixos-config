@@ -25,6 +25,7 @@
     # cli
     zsh
     fd
+    sd
     ripgrep
     nushell
     starship
@@ -39,10 +40,14 @@
     difftastic
     tealdeer
     zellij
+    tmux
     yazi
     bottom
     fastfetch
     lazygit
+    procs
+    mtr
+
 
     playerctl
     ddcutil
