@@ -1,4 +1,4 @@
-{ username, homeDirectory, ... }:
+{ config, username, homeDirectory, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
@@ -10,11 +10,23 @@
 
   nix.settings = {
     # download-buffer-size = 1048576000;
-    substituters = [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ];
+    substituters = [
+      "ssh-ng://${username}@OS"
+      "ssh-ng://${username}@Nix"
+      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+    ];
     experimental-features = [
       "nix-command"
       "flakes"
     ];
+  };
+
+  nix.sshServe = {
+    enable = true;
+    protocol = "ssh-ng";
+    trusted = true;
+    write = true;
+    keys = config.users.users.${username}.openssh.authorizedKeys.keys;
   };
 
   programs.nh = {
