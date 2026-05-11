@@ -29,4 +29,8 @@
       "-${pkgs.iproute2}/bin/ip link delete dev Mihomo"
     ];
   };
+
+  services.resolved.enable = true;
+  networking.networkmanager.dns = "systemd-resolved";
+  networking.nameservers = [ "127.0.0.1" ];
 }
