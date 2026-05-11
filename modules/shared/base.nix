@@ -26,8 +26,12 @@
 
   services.openssh = {
     enable = true;
-    settings.PasswordAuthentication = true;
+    settings = {
+      PasswordAuthentication = true;
+      X11Forwarding = true;
+    };
   };
+
   programs.mosh.enable = true;
 
   programs.zsh.enable = true;
