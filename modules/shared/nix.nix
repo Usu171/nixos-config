@@ -1,4 +1,9 @@
-{ config, username, homeDirectory, ... }:
+{
+  config,
+  username,
+  homeDirectory,
+  ...
+}:
 
 {
   nixpkgs.config.allowUnfree = true;
@@ -28,7 +33,7 @@
     protocol = "ssh-ng";
     trusted = true;
     write = true;
-    keys = config.users.users.${username}.openssh.authorizedKeys.keys;
+    inherit (config.users.users.${username}.openssh.authorizedKeys) keys;
   };
 
   programs.nh = {
