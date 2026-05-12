@@ -5,6 +5,7 @@
 {
   imports = [
     ../shared
+    ../clash.nix
     ../fhs.nix
     ../input.nix
     ../nvidia.nix
