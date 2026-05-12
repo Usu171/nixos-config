@@ -1,4 +1,4 @@
-{ username, ... }:
+{ config, username, ... }:
 
 {
   users.groups.i2c = { };
@@ -32,4 +32,7 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINrzG9OZps+ttyStuQeBGNzs1Dpx+0aeZQQ48ckIiWez usu171@nixos"
     ];
   };
+
+  users.users.root.openssh.authorizedKeys.keys =
+    config.users.users.${username}.openssh.authorizedKeys.keys;
 }
