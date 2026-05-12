@@ -7,6 +7,7 @@
   users.users.${username} = {
     isNormalUser = true;
     description = username;
+    linger = true;
     extraGroups = [
       "networkmanager"
       "wheel"
