@@ -175,6 +175,10 @@ unsetopt bang_hist # 禁用历史扩展 !
 # . "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh)" # 历史
 
+setopt no_nomatch
+export EDITOR=nvim
+export WORDCHARS='*?_-[]~=&;!#$%^(){}<>'
+
 # alias
 alias ls='eza --icons --group-directories-first'
 alias ll='ls -lhgM --git'
@@ -196,20 +200,71 @@ alias jp2a='jp2a --background=dark --color-depth=24 --term-width --term-height'
 
 
 # functions
-function clash-proxy {
-    if [[ $1 == "off" ]]; then
-        unset http_proxy
-        unset https_proxy
-        unset HTTP_PROXY
-        unset HTTPS_PROXY
-    else
-        _PROXY_="http://127.0.0.1:7897"
-        export http_proxy=${_PROXY_}
-        export https_proxy=${_PROXY_}
-        export HTTP_PROXY=${_PROXY_}
-        export HTTPS_PROXY=${_PROXY_}
-        echo "set http proxy: ${_PROXY_}"
-        unset _PROXY_
+function clash-proxy() {
+    local host="127.0.0.1"
+    # HTTP proxy 默认端口
+    local port="7897"
+    # SOCKS proxy 默认端口
+    local socks_port="7897"
+
+    local enable_all_proxy=0
+
+    if [[ "$1" == "off" ]]; then
+        unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY
+        unset all_proxy ALL_PROXY
+        echo "proxy disabled"
+        return 0
+    fi
+
+    # 第一个纯数字参数作为 http port
+    if [[ "$1" =~ '^[0-9]+$' ]]; then
+        port="$1"
+        shift
+    fi
+
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            -p|--proxy)
+                shift
+
+                if [[ "$1" == *:* ]]; then
+                    host="${1%%:*}"
+                    port="${1##*:}"
+                else
+                    host="$1"
+                fi
+                ;;
+
+            -a|--all)
+                enable_all_proxy=1
+                ;;
+
+            -s|--socks-port)
+                shift
+                socks_port="$1"
+                ;;
+        esac
+
+        shift
+    done
+
+    local http_proxy_url="http://${host}:${port}"
+    local socks_proxy_url="socks5h://${host}:${socks_port}"
+
+    export http_proxy="$http_proxy_url"
+    export https_proxy="$http_proxy_url"
+    export HTTP_PROXY="$http_proxy_url"
+    export HTTPS_PROXY="$http_proxy_url"
+
+    if (( enable_all_proxy )); then
+        export all_proxy="$socks_proxy_url"
+        export ALL_PROXY="$socks_proxy_url"
+    fi
+
+    echo "http proxy:  $http_proxy_url"
+
+    if (( enable_all_proxy )); then
+        echo "all proxy:   $socks_proxy_url"
     fi
 }
 
