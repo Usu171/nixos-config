@@ -18,6 +18,7 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+  networking.firewall.enable = false;
 
   networking.firewall.allowedTCPPorts = [
     22
