@@ -7,4 +7,6 @@
   ];
 
   programs.firefox.enable = true;
+
+  services.flatpak.enable = true;
 }
