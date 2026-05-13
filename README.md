@@ -17,7 +17,7 @@
 - [SHORiN-KiWATA/shorin-arch-setup: 一键配置archlinux桌面环境](https://github.com/SHORiN-KiWATA/shorin-arch-setup)
 - [SHORiN-KiWATA/Shorin-ArchLinux-Guide: 【2026最适合新手的Arch Linux教程】具体内容包括：系统安装教程、win+linux双系统、N卡驱动、桌面环境、中文输入法、Linux玩游戏、常用虚拟机程序、显卡直通、干净删除linux等。](https://github.com/SHORiN-KiWATA/Shorin-ArchLinux-Guide)
 
-`nixos`: [KDE Plasma](https://kde.org/plasma-desktop/)
+`nixos`: ~~[KDE Plasma](https://kde.org/plasma-desktop/)~~
 
 
 ## Code
