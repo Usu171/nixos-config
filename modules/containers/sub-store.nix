@@ -6,7 +6,7 @@ _:
   ];
 
   virtualisation.oci-containers.containers.sub-store = {
-    image = "docker.io/xream/sub-store:latest";
+    image = "docker.io/xream/sub-store:2.23.0";
     autoStart = true;
 
     ports = [
