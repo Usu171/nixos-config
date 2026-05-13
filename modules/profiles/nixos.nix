@@ -8,6 +8,7 @@
     ../fhs.nix
     ../podman.nix
     ../desktop/cage.nix
+    ../containers/beszel.nix
     ../containers/sub-store.nix
     ../services/clash.nix
     ../services/cliproxy.nix
