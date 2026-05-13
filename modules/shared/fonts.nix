@@ -28,7 +28,7 @@
         ];
         serif = [
           "Noto Serif"
-          "Note Serif CJK SC"
+          "Noto Serif CJK SC"
         ];
         emoji = [
           "Noto Color Emoji"

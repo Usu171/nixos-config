@@ -10,6 +10,5 @@ in
 {
   environment.systemPackages = with pkgs; [
     myPython
-    kdePackages.kate
   ];
 }

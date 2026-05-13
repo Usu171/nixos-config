@@ -5,6 +5,7 @@
 {
   imports = [
     ../shared
+    ../desktop-base
     ../fhs.nix
     ../input.nix
     ../nvidia.nix
@@ -13,6 +14,7 @@
     ../services/clash.nix
     ../services/slurm.nix
     ../services/tailscale.nix
+    ../desktop/cage.nix
     ../desktop/niri.nix
     ../packages/shared
     ../packages/gui.nix
