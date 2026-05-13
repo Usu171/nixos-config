@@ -2,25 +2,24 @@
   deploy-rs,
   nixosConfigurations,
   system,
-  username,
   ...
 }:
 {
   nodes = {
     unix = {
       hostname = "OS";
-      sshUser = username;
+      sshUser = "root";
       user = "root";
-      interactiveSudo = true;
+      interactiveSudo = false;
       remoteBuild = true;
       profiles.system.path = deploy-rs.lib.${system}.activate.nixos nixosConfigurations.unix;
     };
 
     nixos = {
       hostname = "Nix";
-      sshUser = username;
+      sshUser = "root";
       user = "root";
-      interactiveSudo = true;
+      interactiveSudo = false;
       remoteBuild = true;
       profiles.system.path = deploy-rs.lib.${system}.activate.nixos nixosConfigurations.nixos;
     };
