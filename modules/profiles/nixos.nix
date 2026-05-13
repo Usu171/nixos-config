@@ -13,5 +13,8 @@
     # ../services/zerotier.nix
     ../services/tailscale.nix
     ../desktop/plasma.nix
+    ../packages/shared
+    ../packages/dev.nix
+    ../packages/peripheral.nix
   ];
 }

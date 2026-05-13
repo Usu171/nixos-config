@@ -8,10 +8,8 @@ let
   );
 in
 {
-  programs.firefox.enable = true;
   environment.systemPackages = with pkgs; [
     myPython
-    google-chrome
     kdePackages.kate
   ];
 }

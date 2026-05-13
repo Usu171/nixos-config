@@ -5,7 +5,6 @@ _: {
     ./desktop.nix
     ./fonts.nix
     ./nix.nix
-    ./packages.nix
     ./user.nix
   ];
 }

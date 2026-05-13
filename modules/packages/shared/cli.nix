@@ -1,0 +1,48 @@
+{ pkgs, ... }:
+
+{
+  environment.systemPackages = with pkgs; [
+    # shell
+    nushell
+
+    findutils
+    fd
+    sd
+    ripgrep
+    sad
+    eza
+    bat
+    hyperfine
+    just
+    lnav
+    difftastic
+    tealdeer
+    # json...
+    jq
+    yq-go
+    jc
+
+    starship
+    atuin
+    zoxide
+    carapace
+    fzf
+    skim
+
+    zellij
+    tmux
+
+    yazi
+    bottom
+    btop
+    fastfetch
+    lazygit
+    procs
+
+    # disk
+    gdu
+    duf
+    dust
+    ncdu
+  ];
+}
