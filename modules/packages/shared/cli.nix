@@ -44,5 +44,6 @@
     duf
     dust
     ncdu
+    smartmontools
   ];
 }
