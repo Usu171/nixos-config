@@ -2,11 +2,12 @@ _:
 
 {
   systemd.tmpfiles.rules = [
-    "d /var/lib/beszel-data 0750 root root - -"
-    "d /var/lib/beszel-agent-data 0750 root root - -"
-    "d /var/lib/beszel-socket 0755 root root - -"
+    "d /run/beszel-socket 0755 root root - -"
     "d /var/lib/beszel-secrets 0700 root root - -"
   ];
+
+  systemd.services.podman-beszel.serviceConfig.StateDirectory = "beszel-data";
+  systemd.services.podman-beszel-agent.serviceConfig.StateDirectory = "beszel-agent-data";
 
   virtualisation.oci-containers.containers = {
     beszel = {
@@ -19,7 +20,7 @@ _:
 
       volumes = [
         "/var/lib/beszel-data:/beszel_data:Z"
-        "/var/lib/beszel-socket:/beszel_socket:Z"
+        "/run/beszel-socket:/beszel_socket:Z"
       ];
 
       environment = {
@@ -28,7 +29,6 @@ _:
 
       extraOptions = [
         "--replace"
-        "--pull=always"
         "--log-opt=max-size=10m"
         "--log-opt=max-file=3"
       ];
@@ -39,7 +39,7 @@ _:
       autoStart = true;
       volumes = [
         "/var/lib/beszel-agent-data:/var/lib/beszel-agent:Z"
-        "/var/lib/beszel-socket:/beszel_socket:Z"
+        "/run/beszel-socket:/beszel_socket:Z"
         "/var/run/docker.sock:/var/run/docker.sock:ro"
       ];
 
@@ -52,7 +52,6 @@ _:
       ];
       extraOptions = [
         "--replace"
-        "--pull=always"
         "--network=host"
         "--device=/dev/sda:/dev/sda"
         "--cap-add=SYS_RAWIO"
