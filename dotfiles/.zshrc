@@ -121,6 +121,7 @@ source <(fzf --zsh)
 zstyle ':fzf-tab:*' query-string ''
 
 # debug
+# echo $_comps[xx]
 # zstyle ':fzf-tab:complete:*' fzf-preview 'echo "word: [$word], realpath: [$realpath]"'
 # 只预览z/cd
 # zstyle ':fzf-tab:complete:(z|cd):*' fzf-preview 'eza -1 --color=always $realpath'

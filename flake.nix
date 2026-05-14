@@ -19,6 +19,7 @@
     #   url = "github:noctalia-dev/noctalia-shell";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
     dms = {
       url = "github:AvengeMedia/DankMaterialShell/stable";
       inputs.nixpkgs.follows = "nixpkgs";
