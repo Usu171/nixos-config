@@ -17,6 +17,8 @@
     recursive = true;
   };
 
+  home.file.".config/zellij/config.kdl".source = ../../dotfiles/.config/zellij/config.kdl;
+
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
