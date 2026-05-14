@@ -11,6 +11,7 @@
     ../containers/beszel.nix
     ../containers/sub-store.nix
     ../services/clash.nix
+    ../services/cockpit.nix
     ../services/cliproxy.nix
     # ../services/zerotier.nix
     ../services/tailscale.nix
