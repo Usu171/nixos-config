@@ -30,9 +30,4 @@
   environment.enableAllTerminfo = true;
 
   programs.direnv.enable = true;
-
-  programs.appimage = {
-    enable = true;
-    binfmt = true;
-  };
 }

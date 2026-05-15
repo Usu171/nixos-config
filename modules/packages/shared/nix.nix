@@ -12,5 +12,7 @@
     dix
     nix-melt
     omnix
+
+    devenv
   ];
 }
