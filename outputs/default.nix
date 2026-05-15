@@ -41,7 +41,6 @@ let
   commonArgs = {
     inherit
       inputs
-      system
       username
       homeDirectory
       lib

@@ -1,7 +1,6 @@
 {
   deploy-rs,
   nixosConfigurations,
-  system,
   ...
 }:
 {
@@ -12,7 +11,7 @@
       user = "root";
       interactiveSudo = false;
       remoteBuild = true;
-      profiles.system.path = deploy-rs.lib.${system}.activate.nixos nixosConfigurations.unix;
+      profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos nixosConfigurations.unix;
     };
 
     nixos = {
@@ -21,7 +20,7 @@
       user = "root";
       interactiveSudo = false;
       remoteBuild = true;
-      profiles.system.path = deploy-rs.lib.${system}.activate.nixos nixosConfigurations.nixos;
+      profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos nixosConfigurations.nixos;
     };
   };
 }
