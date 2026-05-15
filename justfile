@@ -27,6 +27,8 @@ unix:
 [group('build')]
 iso isoname='installer' variant='iso-installer':
   nix build .#nixosConfigurations.{{isoname}}.config.system.build.images.{{variant}}
+  # nixos-rebuild build-image --flake .#installer --image-variant myinstaller
+  # nh os build-image --image-variant myinstaller 目前不支持自定义 image-variant
 
 
 # 显示主机 nixpkgs flake source 路径
