@@ -17,7 +17,7 @@
     trusted-users = [ "root" ];
   };
 
-  # Placeholders for evaluation (overridden by nixos-rebuild build-image variant)
+  # nix flake check Placeholders for evaluation (overridden by nixos-rebuild build-image variant)
   fileSystems."/" = {
     device = "none";
     fsType = "tmpfs";
