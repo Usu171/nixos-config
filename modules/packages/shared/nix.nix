@@ -12,6 +12,7 @@
     dix
     nix-melt
     omnix
+    nix-output-monitor
 
     devenv
   ];
