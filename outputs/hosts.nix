@@ -32,7 +32,7 @@
       homeDirectory = "/root";
     };
     modules = [
-      ../hosts/iso
+      ../hosts/installer
     ];
   };
 }

@@ -32,11 +32,11 @@ iso isoname='installer' variant='myinstaller':
 
 # seed mihomo files into ISO, build, then clean up
 [group('iso')]
-iso-with-mihomo isoname='installer' variant='myinstaller' config_path='{{env_var("HOME")}}/.local/share/mihomo/config.yaml' state_path='/var/lib/private/mihomo':
+iso-with-mihomo isoname='installer' variant='myinstaller' config_path=(home_dir() + "/.local/share/mihomo/config.yaml") state_path='/var/lib/private/mihomo':
   #!/usr/bin/env bash
   set -euo pipefail
 
-  target_dir="hosts/iso/mihomo"
+  target_dir="hosts/installer/mihomo"
   cleanup() {
     git restore --staged -- "$target_dir" 2>/dev/null || true
     rm -rf -- "$target_dir"
