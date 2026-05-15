@@ -24,6 +24,7 @@
     vim
     neovim
     helix
+    fresh-editor
   ];
 
   environment.enableAllTerminfo = true;
