@@ -26,9 +26,32 @@ unix:
 # build iso installation media
 [group('iso')]
 iso isoname='installer' variant='myinstaller':
-  nix build .#nixosConfigurations.{{isoname}}.config.system.build.images.{{variant}}
-  # nixos-rebuild build-image --flake .#installer --image-variant myinstaller
-  # nh os build-image --image-variant myinstaller 目前不支持自定义 image-variant
+  nh os build-image -H {{isoname}} --image-variant {{variant}}
+  # nixos-rebuild build-image --flake .#{{isoname}} --image-variant {{variant}}
+  # nix build .#nixosConfigurations.{{isoname}}.config.system.build.images.{{variant}}
+
+# seed mihomo files into ISO, build, then clean up
+[group('iso')]
+iso-with-mihomo isoname='installer' variant='myinstaller' config_path='{{env_var("HOME")}}/.local/share/mihomo/config.yaml' state_path='/var/lib/private/mihomo':
+  #!/usr/bin/env bash
+  set -euo pipefail
+
+  target_dir="hosts/iso/mihomo"
+  cleanup() {
+    git restore --staged -- "$target_dir" 2>/dev/null || true
+    rm -rf -- "$target_dir"
+  }
+  trap cleanup EXIT
+
+  rm -rf -- "$target_dir"
+  install -d -m 0755 "$target_dir"
+  cp -f -- "{{config_path}}" "$target_dir/config.yaml"
+  sudo cp -a -- "{{state_path}}/." "$target_dir/"
+  sudo chown -R -- "$(id -u):$(id -g)" "$target_dir"
+  chmod -R u+rwX,go-rwx "$target_dir"
+
+  git add -- "$target_dir"
+  nh os build-image -H {{isoname}} --image-variant {{variant}}
 
 # show iso installation media config
 [group('nix')]
@@ -134,4 +157,3 @@ up-nix:
 [group('nix')]
 override-pkgs hash:
   nix flake update --commit-lock-file nixpkgs --override-input nixpkgs github:NixOS/nixpkgs/{{hash}}
-
