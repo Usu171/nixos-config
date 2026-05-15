@@ -3,6 +3,7 @@
   home-manager,
   mkHomeManagerModule,
   mkHost,
+  lib,
   ...
 }:
 {
@@ -22,4 +23,16 @@
     home-manager.nixosModules.home-manager
     (mkHomeManagerModule ../home/profiles/nixos.nix)
   ];
+
+  installer = lib.nixosSystem {
+    system = "x86_64-linux";
+    specialArgs = {
+      inherit inputs;
+      username = "root";
+      homeDirectory = "/root";
+    };
+    modules = [
+      ../hosts/iso
+    ];
+  };
 }

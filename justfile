@@ -24,12 +24,21 @@ unix:
   nixos-rebuild --flake .#unix --target-host root@OS switch
 
 # build iso installation media
-[group('build')]
-iso isoname='installer' variant='iso-installer':
+[group('iso')]
+iso isoname='installer' variant='myinstaller':
   nix build .#nixosConfigurations.{{isoname}}.config.system.build.images.{{variant}}
   # nixos-rebuild build-image --flake .#installer --image-variant myinstaller
   # nh os build-image --image-variant myinstaller 目前不支持自定义 image-variant
 
+# show iso installation media config
+[group('nix')]
+show-iso-config config:
+  nix eval --json --impure --expr 'let flake = builtins.getFlake (toString ./.); cfg = flake.nixosConfigurations.installer; final = cfg.extendModules { modules = [ cfg.config.image.modules.myinstaller ]; }; in final.config.{{config}} ' | jq
+
+# show unix configuration
+[group('nix')]
+show-unix-config config:
+    nix eval --json .#nixosConfigurations.unix.config.{{config}} | jq
 
 # 显示主机 nixpkgs flake source 路径
 [group('nix')]
