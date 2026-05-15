@@ -7,7 +7,6 @@
     deskflow
     xwayland-satellite
     wl-clipboard
-    opencode
   ];
 
   networking.firewall = {
