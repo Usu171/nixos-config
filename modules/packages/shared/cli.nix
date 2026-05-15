@@ -45,5 +45,9 @@
     dust
     ncdu
     smartmontools
+
+    # systemd
+    isd
+    systemctl-tui
   ];
 }
