@@ -8,29 +8,44 @@ default_host := `hostname`
 sw:
   nh os switch
 
-# Deploy to remote host via ssh
+# 部署到远程主机
 [group('deploy')]
 de flake host:
-  nixos-rebuild --flake .#{{flake}} --target-host {{host}} switch
+  nh os switch -H {{flake}} --target-host {{host}}
 
-# nixos
+# 部署到nixos
 [group('deploy')]
 nixos:
-  nixos-rebuild --flake .#nixos --target-host root@Nix switch
+  nh os switch -H nixos --target-host Nix
 
-# unix
+# 部署到unix
 [group('deploy')]
 unix:
-  nixos-rebuild --flake .#unix --target-host root@OS switch
+  nh os switch -H unix --target-host OS
 
-# build iso installation media
+# 构建iso安装镜像
 [group('iso')]
 iso isoname='installer' variant='myinstaller':
   nh os build-image -H {{isoname}} --image-variant {{variant}}
   # nixos-rebuild build-image --flake .#{{isoname}} --image-variant {{variant}}
   # nix build .#nixosConfigurations.{{isoname}}.config.system.build.images.{{variant}}
 
-# seed mihomo files into ISO, build, then clean up
+# 部署到远程主机 via nixos-rebuild
+[group('deploy')]
+de-nr flake host:
+  nixos-rebuild --flake .#{{flake}} --target-host {{host}} switch
+
+# 部署到nixos via nixos-rebuild
+[group('deploy')]
+nixos-nr:
+  nixos-rebuild --flake .#nixos --target-host root@Nix switch
+
+# 部署到unix via nixos-rebuild
+[group('deploy')]
+unix-nr:
+  nixos-rebuild --flake .#unix --target-host root@OS switch
+
+# 构建iso安装镜像复制mihomo配置
 [group('iso')]
 iso-with-mihomo isoname='installer' variant='myinstaller' config_path=(home_dir() + "/.local/share/mihomo/config.yaml") state_path='/var/lib/private/mihomo':
   #!/usr/bin/env bash
@@ -53,15 +68,20 @@ iso-with-mihomo isoname='installer' variant='myinstaller' config_path=(home_dir(
   git add -- "$target_dir"
   nh os build-image -H {{isoname}} --image-variant {{variant}}
 
-# show iso installation media config
+# 显示主机配置
+[group('nix')]
+show-config config host='unix':
+    nix eval --json .#nixosConfigurations.{{host}}.config.{{config}} | jq
+
+# 显示home-manager配置
+[group('nix')]
+show-hm-config config host='unix' user='usu171':
+    nix eval --json .#nixosConfigurations.{{host}}.config.home-manager.users.{{user}}.{{config}} | jq
+
+# 显示iso安装介质配置
 [group('nix')]
 show-iso-config config:
   nix eval --json --impure --expr 'let flake = builtins.getFlake (toString ./.); cfg = flake.nixosConfigurations.installer; final = cfg.extendModules { modules = [ cfg.config.image.modules.myinstaller ]; }; in final.config.{{config}} ' | jq
-
-# show unix configuration
-[group('nix')]
-show-unix-config config:
-    nix eval --json .#nixosConfigurations.unix.config.{{config}} | jq
 
 # 显示主机 nixpkgs flake source 路径
 [group('nix')]

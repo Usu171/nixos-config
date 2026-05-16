@@ -6,7 +6,7 @@
 
 > 常见的替代是[colmena](https://github.com/zhaofengli/colmena)
 
-本地使用[nh](https://github.com/nix-community/nh)替代`nixos-rebuild`, `nix-collect-garbage` ...）
+使用[nh](https://github.com/nix-community/nh)替代`nixos-rebuild`, `nix-collect-garbage` ...）
 
 
 ## Hosts
