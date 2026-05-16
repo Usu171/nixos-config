@@ -1,5 +1,5 @@
-autoload -Uz compinit # 补全系统
-compinit
+# autoload -Uz compinit # 补全系统
+# compinit
 
 precmd() { echo -ne '\e[5 q' } # 在每次提示符前设置光标为竖线
 # unalias zi # 取消zinit的zi alias，避免与zoxide冲突

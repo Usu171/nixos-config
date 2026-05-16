@@ -17,6 +17,7 @@ in
 
   programs.zsh = {
     enable = true;
+    enableCompletion = false; # 该选项默认为true /etc/zshrc 也默认会开 必须确保只开一次，否则会有性能问题
     autosuggestion.enable = true;
     plugins = [
       {
@@ -28,11 +29,6 @@ in
         name = "history-substring-search";
         src = pkgs.zsh-history-substring-search;
         file = "share/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh";
-      }
-      {
-        name = "powerlevel10k";
-        src = pkgs.zsh-powerlevel10k;
-        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
       }
       {
         name = "fast-syntax-highlighting";
@@ -84,6 +80,7 @@ in
       '')
 
       (lib.mkAfter ''
+        # source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme # 性能比放plugin更好一些
         [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
         source ${../../dotfiles/.zshrc}
