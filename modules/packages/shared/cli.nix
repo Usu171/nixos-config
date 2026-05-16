@@ -28,6 +28,7 @@
     carapace
     fzf
     skim
+    television
 
     zellij
     tmux

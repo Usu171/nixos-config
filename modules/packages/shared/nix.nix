@@ -13,6 +13,7 @@
     nix-melt
     omnix
     nix-output-monitor
+    nix-search-cli
 
     devenv
   ];

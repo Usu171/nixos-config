@@ -2,8 +2,9 @@ _:
 
 {
   imports = [
+    ./cli.nix
     ./git.nix
-    ./nix-index.nix
+    ./nix.nix
     ./ssh.nix
     ./zsh.nix
   ];

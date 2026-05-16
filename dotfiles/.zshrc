@@ -88,6 +88,8 @@ unalias zi # 取消zinit的zi alias，避免与zoxide冲突
 eval "$(zoxide init zsh)" # 目录跳转 z/zi
 
 # ---补全---
+eval "$(tv init zsh)"
+bindkey '^[v' tv-smart-autocomplete
 
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # carapace 补全桥接
 zstyle ':completion:*' format '%d' # 显示补全来源
@@ -95,9 +97,9 @@ source <(carapace _carapace) # carapace 补全 会和fzf-tab冲突？ echo $_com
 
 # zstyle ':completion:*' menu no # 关闭默认的补全菜单
 # 用 fd
-export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --exclude .git' # --follow
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+export FZF_ALT_C_COMMAND='fd --type d --hidden --exclude .git' # --follow
 export FZF_ALT_C_OPTS="
   --walker-skip .git,node_modules,target
   --height=40% --min-height=15 --preview-window=right:55%:wrap
@@ -178,7 +180,7 @@ eval "$(atuin init zsh)" # 历史
 
 setopt no_nomatch
 export EDITOR=nvim
-export WORDCHARS='*?_-[]~=&;!#$%^(){}<>'
+export WORDCHARS='*?_-[]~=&;!$%^(){}<>'
 
 # alias
 alias ls='eza --icons --group-directories-first'
