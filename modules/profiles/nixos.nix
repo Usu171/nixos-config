@@ -5,7 +5,7 @@
 {
   imports = [
     ../shared
-    ../fhs.nix
+    ../nix-ld/base.nix
     ../podman.nix
     ../desktop/cage.nix
     ../containers/beszel.nix
