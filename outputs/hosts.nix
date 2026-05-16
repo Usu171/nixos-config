@@ -24,6 +24,15 @@
     (mkHomeManagerModule ../home/profiles/nixos.nix)
   ];
 
+  wsl = mkHost [
+    ../hosts/wsl
+    inputs.nixos-wsl.nixosModules.default
+    inputs.vscode-server.nixosModules.default
+    { services.vscode-server.enable = true; }
+    home-manager.nixosModules.home-manager
+    (mkHomeManagerModule ../home/profiles/wsl.nix)
+  ];
+
   installer = lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = {

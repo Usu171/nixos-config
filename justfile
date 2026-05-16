@@ -23,13 +23,6 @@ nixos:
 unix:
   nh os switch -H unix --target-host OS
 
-# 构建iso安装镜像
-[group('iso')]
-iso isoname='installer' variant='myinstaller':
-  nh os build-image -H {{isoname}} --image-variant {{variant}}
-  # nixos-rebuild build-image --flake .#{{isoname}} --image-variant {{variant}}
-  # nix build .#nixosConfigurations.{{isoname}}.config.system.build.images.{{variant}}
-
 # 部署到远程主机 via nixos-rebuild
 [group('deploy')]
 de-nr flake host:
@@ -44,6 +37,13 @@ nixos-nr:
 [group('deploy')]
 unix-nr:
   nixos-rebuild --flake .#unix --target-host root@OS switch
+
+# 构建iso安装镜像
+[group('build')]
+iso isoname='installer' variant='myinstaller':
+  nh os build-image -H {{isoname}} --image-variant {{variant}}
+  # nixos-rebuild build-image --flake .#{{isoname}} --image-variant {{variant}}
+  # nix build .#nixosConfigurations.{{isoname}}.config.system.build.images.{{variant}}
 
 # 构建iso安装镜像复制mihomo配置
 [group('iso')]
@@ -67,6 +67,12 @@ iso-with-mihomo isoname='installer' variant='myinstaller' config_path=(home_dir(
 
   git add -- "$target_dir"
   nh os build-image -H {{isoname}} --image-variant {{variant}}
+
+# 构建wsl
+[group('build')]
+wsl host='wsl':
+  sudo nix run .#nixosConfigurations.{{host}}.config.system.build.tarballBuilder
+  # nix build .#nixosConfigurations.{{host}}.config.system.build.tarballBuilder && sudo ./result/bin/nixos-wsl-tarball-builder
 
 # 显示主机配置
 [group('nix')]

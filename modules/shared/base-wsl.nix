@@ -1,9 +1,10 @@
 { pkgs, ... }:
 
 {
-  networking.networkmanager.enable = true;
+  networking.networkmanager.enable = false;
+  networking.firewall.enable = false;
 
-  services.printing.enable = true;
+  services.printing.enable = false;
 
   services.openssh = {
     enable = true;
@@ -12,8 +13,6 @@
       X11Forwarding = true;
     };
   };
-
-  programs.mosh.enable = true;
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
