@@ -65,11 +65,13 @@ zinit snippet OMZL::termsupport.zsh # 终端窗口标题设置 更新
 
 zinit snippet OMZP::git # git简写命令 https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
 # zinit snippet OMZP::pip # pip补全,简写命令 https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/pip
-# zinit snippet OMZP::command-not-found # 插件会在输入不存在的命令时提示安装哪个包 https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/command-not-found/README.md
+# zinit snippet OMZP::command-not-found # 插件会在输入不存在的命令时提示安装哪个包，使用programs.command-not-found https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/command-not-found/README.md
+# 应当使用 https://github.com/nix-community/nix-index-database 自带 command-not-found shell集成
+# 而不是programs.command-not-found
 
 
 
-zinit light paulirish/git-open # git open 从打开GitHub页面
+zinit light paulirish/git-open # git open 打开GitHub页面
 zinit light zsh-users/zsh-autosuggestions # 灰色提示历史命令
 zinit light zsh-users/zsh-completions # 额外命令补全
 
