@@ -80,7 +80,7 @@ in
       '')
 
       (lib.mkAfter ''
-        # source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme # 性能比放plugin更好一些
+        source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme # 性能比放plugin更好一些
         [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
         source ${../../dotfiles/.zshrc}
