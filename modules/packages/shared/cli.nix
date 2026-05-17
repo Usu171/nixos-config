@@ -17,6 +17,7 @@
     lnav
     difftastic
     tealdeer
+    gitoxide
     # json...
     jq
     yq-go
