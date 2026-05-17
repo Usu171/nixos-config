@@ -14,7 +14,7 @@
     inputs.dms.nixosModules.greeter
     home-manager.nixosModules.home-manager
     (mkHomeManagerModule ../home/profiles/unix.nix { })
-  ];
+  ] { };
 
   nixos = mkHost [
     ../hosts/nixos
@@ -22,7 +22,7 @@
     { services.vscode-server.enable = true; }
     home-manager.nixosModules.home-manager
     (mkHomeManagerModule ../home/profiles/nixos.nix { })
-  ];
+  ] { };
 
   wsl = mkHost [
     ../hosts/wsl
@@ -31,22 +31,19 @@
     { services.vscode-server.enable = true; }
     home-manager.nixosModules.home-manager
     (mkHomeManagerModule ../home/profiles/wsl.nix { })
-  ];
+  ] { };
 
-  installer = lib.nixosSystem {
-    system = "x86_64-linux";
-    specialArgs = {
-      inherit inputs;
+  installer = mkHost [
+    ../hosts/installer
+    inputs.vscode-server.nixosModules.default
+    { services.vscode-server.enable = true; }
+    home-manager.nixosModules.home-manager
+    (mkHomeManagerModule ../home/profiles/installer.nix {
       username = "root";
       homeDirectory = "/root";
-    };
-    modules = [
-      home-manager.nixosModules.home-manager
-      (mkHomeManagerModule ../home/profiles/installer.nix {
-        username = "root";
-        homeDirectory = "/root";
-      })
-      ../hosts/installer
-    ];
+    })
+  ] {
+    username = "root";
+    homeDirectory = "/root";
   };
 }

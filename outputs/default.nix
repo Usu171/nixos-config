@@ -33,12 +33,14 @@ let
 
   mkHost =
     modules:
+    {
+      username ? defaultUsername,
+      homeDirectory ? defaultHomeDirectory,
+    }:
     lib.nixosSystem {
       inherit system;
       specialArgs = {
-        inherit inputs;
-        username = defaultUsername;
-        homeDirectory = defaultHomeDirectory;
+        inherit inputs username homeDirectory;
       };
       modules = [
         { system.configurationRevision = self.rev or self.dirtyRev or null; }
