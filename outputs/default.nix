@@ -8,29 +8,37 @@ inputs@{
 }:
 let
   system = "x86_64-linux";
-  username = "usu171";
-  homeDirectory = "/home/${username}";
+  defaultUsername = "usu171";
+  defaultHomeDirectory = "/home/${defaultUsername}";
   inherit (nixpkgs) lib;
 
   eachSystem = f: lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
   treefmtEval = eachSystem (pkgs: inputs.treefmt-nix.lib.evalModule pkgs ../treefmt.nix);
 
-  mkHomeManagerModule = homePath: {
-    home-manager.useGlobalPkgs = true;
-    home-manager.useUserPackages = true;
-    home-manager.backupFileExtension = "hm-backup";
-    home-manager.extraSpecialArgs = {
-      inherit inputs username homeDirectory;
+  mkHomeManagerModule =
+    homePath:
+    {
+      username ? defaultUsername,
+      homeDirectory ? defaultHomeDirectory,
+    }:
+    {
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.backupFileExtension = "hm-backup";
+      home-manager.extraSpecialArgs = {
+        inherit inputs username homeDirectory;
+      };
+      home-manager.users.${username} = import homePath;
     };
-    home-manager.users.${username} = import homePath;
-  };
 
   mkHost =
     modules:
     lib.nixosSystem {
       inherit system;
       specialArgs = {
-        inherit inputs username homeDirectory;
+        inherit inputs;
+        username = defaultUsername;
+        homeDirectory = defaultHomeDirectory;
       };
       modules = [
         { system.configurationRevision = self.rev or self.dirtyRev or null; }
@@ -41,12 +49,12 @@ let
   commonArgs = {
     inherit
       inputs
-      username
-      homeDirectory
       lib
       mkHomeManagerModule
       mkHost
       ;
+    username = defaultUsername;
+    homeDirectory = defaultHomeDirectory;
   };
 
   nixosConfigurations = import ./hosts.nix (commonArgs // { inherit home-manager; });

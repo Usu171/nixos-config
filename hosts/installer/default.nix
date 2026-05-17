@@ -22,25 +22,12 @@ in
 
 {
   imports = [
-    ../../modules/services/clash.nix
+    ../../modules/profiles/installer.nix
   ];
 
   image.modules.myinstaller = "${modulesPath}/installer/cd-dvd/installation-cd-graphical-calamares-plasma6.nix";
 
   networking.hostName = "installer";
-
-  nix.settings = {
-    substituters = [
-      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-      "https://mirrors.ustc.edu.cn/nix-channels/store"
-      "https://nix-community.cachix.org"
-    ];
-    trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
-    experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-  };
 
   # If hosts/iso/mihomo exists, bake its contents into the ISO and seed the
   # live system with Mihomo runtime state under /var/lib/private/mihomo. Keep
@@ -66,4 +53,10 @@ in
     fsType = "tmpfs";
   };
   boot.loader.grub.enable = false;
+
+  users.users.nixos = {
+    isNormalUser = true;
+    group = "users";
+    home = "/home/nixos";
+  };
 }
