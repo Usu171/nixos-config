@@ -3,7 +3,6 @@
   home-manager,
   mkHomeManagerModule,
   mkHost,
-  lib,
   ...
 }:
 {
@@ -33,17 +32,20 @@
     (mkHomeManagerModule ../home/profiles/wsl.nix { })
   ] { };
 
-  installer = mkHost [
-    ../hosts/installer
-    inputs.vscode-server.nixosModules.default
-    { services.vscode-server.enable = true; }
-    home-manager.nixosModules.home-manager
-    (mkHomeManagerModule ../home/profiles/installer.nix {
-      username = "root";
-      homeDirectory = "/root";
-    })
-  ] {
-    username = "root";
-    homeDirectory = "/root";
-  };
+  installer =
+    mkHost
+      [
+        ../hosts/installer
+        inputs.vscode-server.nixosModules.default
+        { services.vscode-server.enable = true; }
+        home-manager.nixosModules.home-manager
+        (mkHomeManagerModule ../home/profiles/installer.nix {
+          username = "root";
+          homeDirectory = "/root";
+        })
+      ]
+      {
+        username = "root";
+        homeDirectory = "/root";
+      };
 }

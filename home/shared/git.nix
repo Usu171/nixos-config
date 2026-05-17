@@ -9,7 +9,7 @@ _:
         email = "usu171@proton.me";
       };
       gpg.format = "ssh";
-      feature.manyFiles=true;
+      feature.manyFiles = true;
     };
     signing = {
       key = "~/.ssh/id_ed25519.pub";
