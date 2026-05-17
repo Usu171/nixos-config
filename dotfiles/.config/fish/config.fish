@@ -29,6 +29,7 @@ set -gx FZF_CTRL_T_OPTS "
   --preview 'bat --style=numbers --color=always {}'
   --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 fzf --fish | source
+fzf_configure_bindings --git_status=ctrl-alt-s --processes=ctrl-alt-p --variables=ctrl-alt-v
 
 atuin init fish | source
 
