@@ -17,11 +17,14 @@
     lnav
     difftastic
     tealdeer
-    gitoxide
     # json...
     jq
     yq-go
     jc
+
+    # git
+    gitoxide
+    serie
 
     starship
     atuin
