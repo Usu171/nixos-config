@@ -20,11 +20,11 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d --hidden --exclude .git' # --follow
 export FZF_ALT_C_OPTS="
   --walker-skip .git,node_modules,target
-  --height=40% --min-height=15 --preview-window=right:55%:wrap
+  --height=40% --min-height=15 --preview-window=right:50%:wrap
   --preview 'eza -a  --icons --group-directories-first --tree --level=2 --color=always {}'"
 export FZF_CTRL_T_OPTS="
   --walker-skip .git,node_modules,target
-  --height=40% --min-height=15 --preview-window=right:55%:wrap
+  --height=40% --min-height=15 --preview-window=right:50%:wrap
   --preview 'bat --style=numbers --color=always {}'
   --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 source <(fzf --zsh)
@@ -57,7 +57,7 @@ zstyle ':fzf-tab:*' query-string ''
 zstyle ':fzf-tab:*' fzf-flags \
   --height=40% \
   --min-height=15 \
-  --preview-window=right:55%:wrap
+  --preview-window=right:50%:wrap
 
 zstyle ':fzf-tab:complete:(z|cd):*' fzf-preview '
 eza -a  --icons --group-directories-first --tree --level=2 --color=always $realpath
