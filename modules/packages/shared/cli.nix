@@ -24,7 +24,9 @@
 
     # git
     gitoxide
+    lazygit
     serie
+    gitui
 
     starship
     atuin
@@ -41,7 +43,6 @@
     bottom
     btop
     fastfetch
-    lazygit
     procs
 
     # disk
