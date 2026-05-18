@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -14,6 +14,7 @@
     omnix
     nix-output-monitor
     nix-search-cli
+    inputs.nixpkgs-hammering.packages.${pkgs.system}.nixpkgs-hammering
 
     devenv
   ];
