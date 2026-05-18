@@ -40,6 +40,10 @@ nix flake check
 - [deadnix](https://github.com/astro/deadnix)
 - [statix](https://github.com/oppiliappan/statix)
 
+## Just
+
+使用[Just](https://github.com/casey/just)简化命令
+
 # 参考
 
 - [NixOS & Flakes Book | 主页](https://nixos-and-flakes.thiscute.world/zh/)
