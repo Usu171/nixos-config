@@ -19,6 +19,10 @@
 
 `nixos`: ~~[KDE Plasma](https://kde.org/plasma-desktop/)~~
 
+`installer`: 安装镜像
+
+`wsl`: wsl
+
 
 ## Code
 
