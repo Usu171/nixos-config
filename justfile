@@ -43,7 +43,7 @@ unix-nr:
 iso isoname='installer' variant='myinstaller':
   nh os build-image -H {{isoname}} --image-variant {{variant}}
   # nixos-rebuild build-image --flake .#{{isoname}} --image-variant {{variant}}
-  # nix build .#nixosConfigurations.{{isoname}}.config.system.build.images.{{variant}}
+  # nom build .#nixosConfigurations.{{isoname}}.config.system.build.images.{{variant}}
 
 # 构建iso安装镜像复制mihomo配置
 [group('iso')]
@@ -72,7 +72,7 @@ iso-with-mihomo isoname='installer' variant='myinstaller' config_path=(home_dir(
 [group('build')]
 wsl host='wsl':
   sudo nix run .#nixosConfigurations.{{host}}.config.system.build.tarballBuilder
-  # nix build .#nixosConfigurations.{{host}}.config.system.build.tarballBuilder && sudo ./result/bin/nixos-wsl-tarball-builder
+  # nom build .#nixosConfigurations.{{host}}.config.system.build.tarballBuilder && sudo ./result/bin/nixos-wsl-tarball-builder
 
 # 显示主机配置
 [group('nix')]
