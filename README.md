@@ -8,6 +8,8 @@
 
 使用[nh](https://github.com/nix-community/nh)替代`nixos-rebuild`, `nix-collect-garbage` ...）
 
+[nom](https://github.com/maralorn/nix-output-monitor)替代`nix build`
+
 
 ## Hosts
 
