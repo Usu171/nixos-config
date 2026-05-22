@@ -11,7 +11,10 @@ bindkey '^[v' tv-smart-autocomplete
 
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # carapace 补全桥接
 zstyle ':completion:*' format '%d' # 显示补全来源
-source <(carapace _carapace) # carapace 补全 会和fzf-tab冲突？ echo $_comps[ls] -> _carapace_completer
+source <(carapace _carapace) # carapace
+# 已知问题
+# 会和fzf-tab冲突？ cat ls 等命令补全路径有一些会被fzf-tab错误地过滤掉 echo $_comps[ls] -> _carapace_completer
+# scp 等远程补全会失效
 
 # zstyle ':completion:*' menu no # 关闭默认的补全菜单
 # 用 fd
@@ -32,17 +35,18 @@ source <(fzf --zsh)
 # 修
 # 白名单 carapace
 # compdef _carapace_completer docker
+
 # 黑名单 carapace
 # compdef _eza eza
 # compdef _bat bat
+compdef _ssh scp
+compdef _ssh sftp
+compdef _rsync rsync
 
 # 修复？ https://github.com/carapace-sh/carapace/issues/1177
 # 会导致z和cd之外的路径$realpath为空 preview出问题
 zstyle ':fzf-tab:*' query-string ''
 
-# debug
-# echo $_comps[xx]
-# zstyle ':fzf-tab:complete:*' fzf-preview 'echo "word: [$word], realpath: [$realpath]"'
 # 只预览z/cd
 # zstyle ':fzf-tab:complete:(z|cd):*' fzf-preview 'eza -1 --color=always $realpath'
 # $realpath 预览 与上面冲突
@@ -89,6 +93,10 @@ else
 fi
 '
 
+# debug
+# echo $_comps[xx]
+# zstyle ':fzf-tab:complete:*' fzf-preview 'echo "word: [$word], realpath: [$realpath]"'
+
 # ---补全---
 
 unsetopt bang_hist # 禁用历史扩展 !
@@ -98,7 +106,7 @@ eval "$(atuin init zsh)" # 历史
 
 setopt no_nomatch
 export EDITOR=nvim
-export WORDCHARS='*?_-[]~=&;!$%^(){}<>'
+export WORDCHARS='*?_-~=&;!$%'
 
 # alias
 alias ls='eza --icons --group-directories-first'
