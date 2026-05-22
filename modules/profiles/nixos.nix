@@ -14,6 +14,7 @@
     ../services/clash.nix
     ../services/cockpit.nix
     ../services/cliproxy.nix
+    ../services/monitoring.nix
     # ../services/zerotier.nix
     ../services/tailscale.nix
     ../packages/shared
