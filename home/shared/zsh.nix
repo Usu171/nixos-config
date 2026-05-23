@@ -26,14 +26,19 @@ in
         file = "share/fzf-tab/fzf-tab.plugin.zsh";
       }
       {
-        name = "history-substring-search";
-        src = pkgs.zsh-history-substring-search;
-        file = "share/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh";
-      }
-      {
         name = "fast-syntax-highlighting";
         src = pkgs.zsh-fast-syntax-highlighting;
         file = "share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh";
+      }
+      {
+        name = "history-substring-search";
+        src = pkgs.zsh-history-substring-search;
+        file = "share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh";
+      }
+      {
+        name = "zsh-autopair";
+        src = pkgs.zsh-autopair;
+        file = "share/zsh/zsh-autopair/autopair.zsh";
       }
     ];
     initContent = lib.mkMerge [
