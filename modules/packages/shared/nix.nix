@@ -14,7 +14,12 @@
     omnix
     nix-output-monitor
     nix-search-cli
+
     inputs.nixpkgs-hammering.packages.${pkgs.system}.nixpkgs-hammering
+    nixpkgs-review
+
+    nix-eval-jobs
+    nix-fast-build
 
     devenv
   ];
