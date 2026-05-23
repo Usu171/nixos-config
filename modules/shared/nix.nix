@@ -9,8 +9,9 @@
   nixpkgs.config.allowUnfree = true;
 
   nix.settings.trusted-users = [
-    "root"
-    username # "@wheel"
+    # "root" "nix-ssh" 已有
+    # "@wheel"
+    username
   ];
 
   nix.settings = {
