@@ -94,6 +94,12 @@ show-iso-config config:
 show-flake-source hostname='':
     nix eval --raw .#nixosConfigurations.{{ if hostname == "" { default_host } else { hostname } }}.config.nixpkgs.flake.source
 
+# nix-instantiate --eval --expr '<nixpkgs>'
+# nix-instantiate --eval --expr 'builtins.nixPath'
+# echo $NIX_PATH
+# nix registry list
+# nix flake metadata
+# nix flake metadata nixpkgs
 
 # ref:
 # https://github.com/ryan4yin/nix-config/blob/main/Justfile
