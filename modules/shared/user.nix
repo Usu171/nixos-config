@@ -31,6 +31,7 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP3Xwqd+r4gYigNUBjN7zA6QfwIl7vccWgUM288/ZcEW usu171@foxmail.com"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID/HEs2+LpWkDolvPUw1JZebYloD0til/YfOnTL3U6An usu171@unix"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINrzG9OZps+ttyStuQeBGNzs1Dpx+0aeZQQ48ckIiWez usu171@nixos"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAvzlExXPS0WNX/MMf5wvQyLgk3Y3FS+E63EDJ+LS9vQ usu171@wsl"
     ];
   };
 
