@@ -39,7 +39,7 @@ unix-nr:
   nixos-rebuild --flake .#unix --target-host root@OS switch
 
 # 构建iso安装镜像
-[group('build')]
+[group('iso')]
 iso isoname='installer' variant='myinstaller':
   nh os build-image -H {{isoname}} --image-variant {{variant}}
   # nixos-rebuild build-image --flake .#{{isoname}} --image-variant {{variant}}
@@ -70,7 +70,7 @@ iso-with-mihomo isoname='installer' variant='myinstaller' config_path=(home_dir(
 
 # 构建wsl
 [group('build')]
-wsl host='wsl':
+build-wsl host='build-wsl':
   sudo nix run .#nixosConfigurations.{{host}}.config.system.build.tarballBuilder
   # nom build .#nixosConfigurations.{{host}}.config.system.build.tarballBuilder && sudo ./result/bin/nixos-wsl-tarball-builder
 
