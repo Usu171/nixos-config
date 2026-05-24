@@ -10,13 +10,14 @@ eval "$(tv init zsh)"
 bindkey '^[v' tv-smart-autocomplete
 
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # carapace 补全桥接
-zstyle ':completion:*' format '%d' # 显示补全来源
+zstyle ':completion:*' menu no # 关闭默认的补全菜单
+zstyle ':completion:*:descriptions' format '%d' # 显示补全来源
+# zstyle ':completion:*' format '%d'
 source <(carapace _carapace) # carapace
 # 已知问题
 # 会和fzf-tab冲突？ cat ls 等命令补全路径有一些会被fzf-tab错误地过滤掉 echo $_comps[ls] -> _carapace_completer
 # scp 等远程补全会失效
 
-# zstyle ':completion:*' menu no # 关闭默认的补全菜单
 # 用 fd
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --exclude .git' # --follow
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -93,6 +94,14 @@ else
 fi
 '
 
+# tmux内弹出窗口
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ':fzf-tab:*' popup-min-size 150 30
+
+# switch group using `<` and `>`
+zstyle ':fzf-tab:*' switch-group '<' '>'
+
+
 # debug
 # echo $_comps[xx]
 # zstyle ':fzf-tab:complete:*' fzf-preview 'echo "word: [$word], realpath: [$realpath]"'
@@ -103,6 +112,11 @@ unsetopt bang_hist # 禁用历史扩展 !
 
 # . "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh)" # 历史
+eval "$(atuin hex init)"
+export ATUIN_TMUX_POPUP=true
+export ATUIN_TMUX_POPUP_WIDTH=90%
+export ATUIN_TMUX_POPUP_HEIGHT=90%
+
 
 setopt no_nomatch
 export EDITOR=nvim
