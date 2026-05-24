@@ -141,6 +141,8 @@ alias c='clear'
 alias objdump='objdump --visualize-jumps=extended-color --disassembler-color=extended'
 alias jp2a='jp2a --background=dark --color-depth=24 --term-width --term-height'
 
+alias j='just'
+
 
 # functions
 function clash-proxy() {
