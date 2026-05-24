@@ -114,7 +114,7 @@ up:
 # Update specific input
 # Usage: just upp nixpkgs
 [group('nix')]
-upp input:
+upp input='nixpkgs':
   nix flake update {{input}} --commit-lock-file
 
 # List all generations of the system profile

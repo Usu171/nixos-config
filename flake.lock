@@ -420,6 +420,7 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-hammering": "nixpkgs-hammering",
         "systems": "systems_5",
+        "tmux-powerkit": "tmux-powerkit",
         "treefmt-nix": "treefmt-nix",
         "vscode-server": "vscode-server"
       }
@@ -511,6 +512,26 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "tmux-powerkit": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1779250738,
+        "narHash": "sha256-eliSL6FOZbFV0J4vqjd4DBblhMv/0fHC+/i0KdgaGzM=",
+        "owner": "fabioluciano",
+        "repo": "tmux-powerkit",
+        "rev": "480d3d7091a5dcdd28b88b13d66fec35aab463c8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fabioluciano",
+        "repo": "tmux-powerkit",
         "type": "github"
       }
     },

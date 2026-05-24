@@ -56,6 +56,11 @@
       url = "github:AvengeMedia/danksearch";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    tmux-powerkit = {
+      url = "github:fabioluciano/tmux-powerkit";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
 
     # utils
     flake-utils.url = "github:numtide/flake-utils";
