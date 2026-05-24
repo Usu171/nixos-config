@@ -40,6 +40,7 @@
     tmux
 
     yazi
+    broot
     bottom
     btop
     fastfetch
