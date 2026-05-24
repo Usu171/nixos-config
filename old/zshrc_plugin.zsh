@@ -72,6 +72,7 @@ zinit light zsh-users/zsh-completions # 额外命令补全
 
 zinit light zdharma-continuum/fast-syntax-highlighting # 语法高亮
 zinit light zsh-users/zsh-history-substring-search # 历史子字符串搜索
+zinit light hlissner/zsh-autopair # 自动括号配对
 
 zinit ice depth=1
 zinit light romkatv/powerlevel10k # 主题
