@@ -15,6 +15,7 @@
     nix-output-monitor
     nix-search-cli
 
+    nix-init
     inputs.nixpkgs-hammering.packages.${pkgs.system}.nixpkgs-hammering
     nixpkgs-review
 

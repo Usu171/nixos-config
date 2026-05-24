@@ -52,6 +52,7 @@
     dust
     ncdu
     smartmontools
+    nvme-cli
 
     # systemd
     isd
