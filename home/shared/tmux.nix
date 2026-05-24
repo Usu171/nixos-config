@@ -48,6 +48,8 @@
     set -g @powerkit_plugin_datetime_format "%m-%d %H:%M:%S"
     set -g @powerkit_status_interval "5"
 
+    set -g popup-style 'bg=default'
+
     # Save
     set -g @continuum-restore 'on' # 自动恢复功能
     set -g @continuum-save-interval '15' # 默认15分钟
