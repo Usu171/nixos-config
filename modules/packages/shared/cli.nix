@@ -48,9 +48,9 @@
 
     # disk
     gdu
+    ncdu
     duf
     dust
-    ncdu
     smartmontools
     nvme-cli
 
