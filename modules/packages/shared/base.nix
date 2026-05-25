@@ -19,6 +19,8 @@
     xz
     zstd
     _7zip-zstd
+    libarchive
+    unar
 
     # editor
     vim
