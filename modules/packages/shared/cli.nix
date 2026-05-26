@@ -38,6 +38,7 @@
 
     zellij
     tmux
+    tmux-xpanes
 
     yazi
     broot
