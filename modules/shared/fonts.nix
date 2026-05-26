@@ -6,6 +6,7 @@
 
     packages = with pkgs; [
       nerd-fonts.jetbrains-mono
+      nerd-fonts.symbols-only
       maple-mono.NF-CN-unhinted
       noto-fonts
       noto-fonts-cjk-sans
