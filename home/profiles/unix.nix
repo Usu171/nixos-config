@@ -6,6 +6,7 @@
 
 {
   imports = [
+    ../emacs.nix
     ../desktop
     ../shared
     ../dotfiles.nix
