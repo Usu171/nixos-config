@@ -121,6 +121,7 @@ export ATUIN_TMUX_POPUP_HEIGHT=90%
 setopt no_nomatch
 export EDITOR=nvim
 export WORDCHARS='*?_-~=&;!$%'
+export BAT_THEME='Visual Studio Dark+'
 
 # alias
 alias ls='eza --icons --group-directories-first'
@@ -131,7 +132,7 @@ alias tree='ls --tree'
 alias rls='command ls'
 
 alias cat='bat --style=plain --paging=never'
-export MANPAGER="bat -l man --paging=always" # 用bat显示man页面
+export MANPAGER='bat -l man --paging=always' # 用bat显示man页面
 alias rcat='command cat'
 
 alias frg='rg -F'

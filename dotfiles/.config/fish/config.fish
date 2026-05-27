@@ -34,8 +34,8 @@ fzf_configure_bindings --git_status=ctrl-alt-s --processes=ctrl-alt-p --variable
 atuin init fish | source
 
 set -gx EDITOR nvim
-set -gx WORDCHARS '*?_-[]~=&;!$%^(){}<>'
-set -gx MANPAGER 'bat -l man --paging=always'
+set -gx WORDCHARS '*?_-~=&;!$%'
+set -gx BAT_THEME 'Visual Studio Dark+'
 
 alias ls 'eza --icons --group-directories-first'
 alias ll 'ls -lhgM --git'
@@ -45,13 +45,17 @@ alias tree 'ls --tree'
 alias rls 'command ls'
 
 alias cat 'bat --style=plain --paging=never'
+set -gx MANPAGER 'bat -l man --paging=always'
 alias rcat 'command cat'
 
 alias frg 'rg -F'
+
 alias c clear
 
 alias objdump 'objdump --visualize-jumps=extended-color --disassembler-color=extended'
 alias jp2a 'jp2a --background=dark --color-depth=24 --term-width --term-height'
+
+alias j 'just'
 
 function clash-proxy
   set -l host 127.0.0.1
