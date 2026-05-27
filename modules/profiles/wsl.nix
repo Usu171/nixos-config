@@ -5,6 +5,7 @@ _:
     ../shared/base-wsl.nix
     ../shared/china.nix
     ../shared/nix.nix
+    ../shared/terminfo.nix
     ../shared/user.nix
     ../nix-ld/base.nix
     ../packages/shared

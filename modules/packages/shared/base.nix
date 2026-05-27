@@ -29,7 +29,8 @@
     fresh-editor
   ];
 
-  environment.enableAllTerminfo = true;
+  # enableAllTerminfo包含的termite已废弃，构建爆炸
+  # environment.enableAllTerminfo = true;
 
   programs.direnv.enable = true;
 }
