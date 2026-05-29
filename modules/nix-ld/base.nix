@@ -3,16 +3,17 @@
 {
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
-    stdenv.cc.cc.lib
+    stdenv.cc.cc
     zlib
     openssl
-    icu
-    libuv
     curl
     libxml2
     xz
     bzip2
     zstd
+
+    icu
+    libuv
 
     glibc
     glib
