@@ -15,18 +15,21 @@ let
   eachSystem = f: lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
   treefmtEval = eachSystem (pkgs: inputs.treefmt-nix.lib.evalModule pkgs ../treefmt.nix);
 
-  mkHomeConfiguration =
-    homePath:
+  mkHost =
+    modules:
     {
       username ? defaultUsername,
       homeDirectory ? defaultHomeDirectory,
     }:
-    home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.${system};
-      extraSpecialArgs = {
+    lib.nixosSystem {
+      inherit system;
+      specialArgs = {
         inherit inputs username homeDirectory;
       };
-      modules = [ homePath ];
+      modules = [
+        { system.configurationRevision = self.rev or self.dirtyRev or null; }
+      ]
+      ++ modules;
     };
 
   mkHomeManagerModule =
@@ -45,21 +48,18 @@ let
       home-manager.users.${username} = import homePath;
     };
 
-  mkHost =
-    modules:
+  mkHomeConfiguration =
+    homePath:
     {
       username ? defaultUsername,
       homeDirectory ? defaultHomeDirectory,
     }:
-    lib.nixosSystem {
-      inherit system;
-      specialArgs = {
+    home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.${system};
+      extraSpecialArgs = {
         inherit inputs username homeDirectory;
       };
-      modules = [
-        { system.configurationRevision = self.rev or self.dirtyRev or null; }
-      ]
-      ++ modules;
+      modules = [ homePath ];
     };
 
   commonArgs = {
