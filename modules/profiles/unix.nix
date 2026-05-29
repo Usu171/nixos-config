@@ -5,6 +5,7 @@
 {
   imports = [
     ../shared
+    ../nix-ld/specialisation.nix
     ../desktop-base
     ../fhs.nix
     ../input.nix
