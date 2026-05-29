@@ -4,33 +4,33 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks = {
+    settings = {
       "*" = {
-        forwardAgent = false;
-        addKeysToAgent = "yes";
-        compression = false;
-        serverAliveInterval = 30;
-        serverAliveCountMax = 3;
-        hashKnownHosts = false;
-        userKnownHostsFile = "~/.ssh/known_hosts";
-        controlMaster = "auto";
-        controlPersist = "10m";
-        controlPath = "~/.ssh/master-%r@%n:%p";
+        ForwardAgent = false;
+        AddKeysToAgent = "yes";
+        Compression = false;
+        ServerAliveInterval = 30;
+        ServerAliveCountMax = 3;
+        HashKnownHosts = false;
+        UserKnownHostsFile = "~/.ssh/known_hosts";
+        ControlMaster = "auto";
+        ControlPersist = "10m";
+        ControlPath = "~/.ssh/master-%r@%n:%p";
       };
 
       OS = {
-        hostname = "192.168.1.3";
-        user = "usu171";
+        HostName = "192.168.1.3";
+        User = "usu171";
       };
 
       Nix = {
-        hostname = "192.168.1.5";
-        user = "usu171";
+        HostName = "192.168.1.5";
+        User = "usu171";
       };
 
       "github.com" = {
-        hostname = "ssh.github.com";
-        port = 443;
+        HostName = "ssh.github.com";
+        Port = 443;
       };
     };
   };
