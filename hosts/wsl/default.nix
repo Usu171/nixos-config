@@ -1,8 +1,8 @@
-{ username, ... }:
+{ flakeRoot, username, ... }:
 
 {
   imports = [
-    ../../modules/profiles/wsl.nix
+    (flakeRoot + /modules/profiles/wsl.nix)
   ];
 
   networking.hostName = "wsl";
@@ -10,7 +10,7 @@
   wsl = {
     enable = true;
     defaultUser = username;
-    tarball.configPath = ../../.;
+    tarball.configPath = flakeRoot;
     wslConf = {
       interop = {
         enabled = true;

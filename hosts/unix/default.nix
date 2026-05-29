@@ -1,11 +1,9 @@
-{
-  ...
-}:
+{ flakeRoot, ... }:
 
 {
   imports = [
-    ../../modules/profiles/unix.nix
-    ../../packages/unix.nix
+    (flakeRoot + /modules/profiles/unix.nix)
+    (flakeRoot + /packages/unix.nix)
     ./hardware-configuration.nix
   ];
 

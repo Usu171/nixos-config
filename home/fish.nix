@@ -1,4 +1,5 @@
 {
+  flakeRoot,
   homeDirectory,
   pkgs,
   ...
@@ -8,7 +9,7 @@
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
-      source ${../../dotfiles/.config/fish/config.fish}
+      source ${flakeRoot + /dotfiles/.config/fish/config.fish}
     '';
     loginShellInit = ''
       if test "$XDG_CURRENT_DESKTOP" != KDE

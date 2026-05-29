@@ -1,4 +1,5 @@
 {
+  flakeRoot,
   homeDirectory,
   lib,
   pkgs,
@@ -10,7 +11,7 @@ let
 in
 
 {
-  home.file.".p10k.zsh".source = ../../dotfiles/.p10k.zsh;
+  home.file.".p10k.zsh".source = flakeRoot + /dotfiles/.p10k.zsh;
   home.packages = [
     pkgs.git-open
   ];
@@ -88,7 +89,7 @@ in
         source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme # 性能比放plugin更好一些
         [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-        source ${../../dotfiles/.zshrc}
+        source ${flakeRoot + /dotfiles/.zshrc}
 
         export PNPM_HOME="${homeDirectory}/.local/share/pnpm"
         case ":$PATH:" in

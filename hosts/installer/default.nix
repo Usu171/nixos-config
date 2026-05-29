@@ -1,4 +1,5 @@
 {
+  flakeRoot,
   homeDirectory,
   lib,
   modulesPath,
@@ -22,7 +23,7 @@ in
 
 {
   imports = [
-    ../../modules/profiles/installer.nix
+    (flakeRoot + /modules/profiles/installer.nix)
   ];
 
   image.modules.myinstaller = "${modulesPath}/installer/cd-dvd/installation-cd-graphical-calamares-plasma6.nix";

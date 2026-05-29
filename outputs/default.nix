@@ -10,6 +10,7 @@ let
   system = "x86_64-linux";
   defaultUsername = "usu171";
   defaultHomeDirectory = "/home/${defaultUsername}";
+  flakeRoot = ../.;
   inherit (nixpkgs) lib;
 
   eachSystem = f: lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
@@ -24,7 +25,12 @@ let
     lib.nixosSystem {
       inherit system;
       specialArgs = {
-        inherit inputs username homeDirectory;
+        inherit
+          inputs
+          username
+          homeDirectory
+          flakeRoot
+          ;
       };
       modules = [
         { system.configurationRevision = self.rev or self.dirtyRev or null; }
@@ -43,7 +49,12 @@ let
       home-manager.useUserPackages = true;
       home-manager.backupFileExtension = "hm-backup";
       home-manager.extraSpecialArgs = {
-        inherit inputs username homeDirectory;
+        inherit
+          inputs
+          username
+          homeDirectory
+          flakeRoot
+          ;
       };
       home-manager.users.${username} = import homePath;
     };
@@ -57,7 +68,12 @@ let
     home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.${system};
       extraSpecialArgs = {
-        inherit inputs username homeDirectory;
+        inherit
+          inputs
+          username
+          homeDirectory
+          flakeRoot
+          ;
       };
       modules = [ homePath ];
     };
