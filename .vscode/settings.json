@@ -15,9 +15,9 @@
         },
         "home-manager": {
           // 需要导出homeConfigurations
-          // "(builtins.getFlake \"${workspaceFolder}\").nixosConfigurations.unix.options.home-manager.users.type.getSubOptions []"
-          // 不需要导出 但是无法获取到包含完整options 例如导入的dank-material-shell
           "expr": "(builtins.getFlake \"${workspaceFolder}\").homeConfigurations.usu171.options"
+          // 不需要导出 但是无法获取到完整options 例如导入的dank-material-shell
+          // "expr": "(builtins.getFlake \"${workspaceFolder}\").nixosConfigurations.unix.options.home-manager.users.type.getSubOptions []"
         }
       },
 
