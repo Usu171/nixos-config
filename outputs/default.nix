@@ -15,6 +15,20 @@ let
   eachSystem = f: lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
   treefmtEval = eachSystem (pkgs: inputs.treefmt-nix.lib.evalModule pkgs ../treefmt.nix);
 
+  mkHomeConfiguration =
+    homePath:
+    {
+      username ? defaultUsername,
+      homeDirectory ? defaultHomeDirectory,
+    }:
+    home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.${system};
+      extraSpecialArgs = {
+        inherit inputs username homeDirectory;
+      };
+      modules = [ homePath ];
+    };
+
   mkHomeManagerModule =
     homePath:
     {
@@ -60,6 +74,13 @@ let
   };
 
   nixosConfigurations = import ./hosts.nix (commonArgs // { inherit home-manager; });
+  homeConfigurations = {
+    usu171 = mkHomeConfiguration ../home/profiles/unix.nix { };
+    root = mkHomeConfiguration ../home/profiles/installer.nix {
+      username = "root";
+      homeDirectory = "/root";
+    };
+  };
   deploy = import ./deploy.nix (commonArgs // { inherit self deploy-rs nixosConfigurations; });
   checks = import ./checks.nix {
     inherit
@@ -74,7 +95,12 @@ let
 in
 {
   formatter = eachSystem (pkgs: treefmtEval.${pkgs.stdenv.hostPlatform.system}.config.build.wrapper);
-  inherit checks deploy nixosConfigurations;
+  inherit
+    checks
+    deploy
+    homeConfigurations
+    nixosConfigurations
+    ;
 
   devShells = eachSystem (pkgs: {
     default = pkgs.mkShell {
