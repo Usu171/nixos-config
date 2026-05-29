@@ -92,9 +92,12 @@ in
 
         export PNPM_HOME="${homeDirectory}/.local/share/pnpm"
         case ":$PATH:" in
-          *":$PNPM_HOME:"*) ;;
-          *) export PATH="$PNPM_HOME:$PATH" ;;
+          *":$PNPM_HOME/bin:"*) ;;
+          *) export PATH="$PNPM_HOME/bin:$PATH" ;;
         esac
+
+        export BUN_INSTALL="$HOME/.bun"
+        export PATH="$BUN_INSTALL/bin:$PATH"
       '')
     ];
     profileExtra = ''
