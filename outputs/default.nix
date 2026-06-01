@@ -13,8 +13,21 @@ let
   flakeRoot = ../.;
   inherit (nixpkgs) lib;
 
+  commonOverlays = [
+    inputs.nix-alien.overlays.default
+    inputs.tmux-which-key.overlays.default
+  ];
+
   eachSystem = f: lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
   treefmtEval = eachSystem (pkgs: inputs.treefmt-nix.lib.evalModule pkgs ../treefmt.nix);
+
+  mkPkgs =
+    system:
+    import nixpkgs {
+      inherit system;
+      overlays = commonOverlays;
+    };
+  editorPkgs = mkPkgs system;
 
   mkHost =
     modules:
@@ -34,6 +47,7 @@ let
       };
       modules = [
         { system.configurationRevision = self.rev or self.dirtyRev or null; }
+        { nixpkgs.overlays = commonOverlays; }
       ]
       ++ modules;
     };
@@ -66,7 +80,7 @@ let
       homeDirectory ? defaultHomeDirectory,
     }:
     home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = mkPkgs system;
       extraSpecialArgs = {
         inherit
           inputs
@@ -114,6 +128,7 @@ in
   inherit
     checks
     deploy
+    editorPkgs
     homeConfigurations
     nixosConfigurations
     ;
