@@ -1,8 +1,6 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
-  nixpkgs.overlays = [ inputs.nix-alien.overlays.default ];
-
   environment.systemPackages = with pkgs; [
     # base
     git
