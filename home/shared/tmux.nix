@@ -1,7 +1,64 @@
-{ inputs, pkgs, ... }:
+{
+  flakeRoot,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
+
+let
+  # tmux-which-key自己的hm模块没有更新，过不了flake check --no-build
+  tmuxWhichKeyPython = pkgs.python3.withPackages (ps: [ ps.pyyaml ]);
+  tmuxWhichKeyPackage = pkgs.tmuxPlugins.tmux-which-key.overrideAttrs (_: {
+    version = "unstable-2026-05-17";
+    src = pkgs.fetchFromGitHub {
+      owner = "alexwforsythe";
+      repo = "tmux-which-key";
+      rev = "85fb9756447b989f3b94e515d1e6ee7fec76cba2";
+      hash = "sha256-eEFe85W/byPtxiRhdAaT22fEFNKsi5AEKsYAuDYcTCo=";
+    };
+  });
+  tmuxWhichKeyPluginPath = "tmux-plugins/tmux-which-key";
+  tmuxWhichKeyConfigYaml = flakeRoot + /dotfiles/.config/tmux-plugins/tmux-which-key/config.yaml;
+  tmuxWhichKeyInit =
+    pkgs.runCommand "tmux-which-key-init.tmux"
+      {
+        nativeBuildInputs = [
+          pkgs.check-jsonschema
+          tmuxWhichKeyPython
+        ];
+      }
+      ''
+        check-jsonschema -v \
+          --schemafile "${tmuxWhichKeyPackage}/share/${tmuxWhichKeyPluginPath}/config.schema.yaml" \
+          ${tmuxWhichKeyConfigYaml}
+        ${lib.getExe tmuxWhichKeyPython} "${tmuxWhichKeyPackage}/share/${tmuxWhichKeyPluginPath}/plugin/build.py" ${tmuxWhichKeyConfigYaml} $out
+      '';
+
+  resurrect = pkgs.tmuxPlugins.resurrect.overrideAttrs (_: {
+    version = "unstable-2023-03-06";
+    src = pkgs.fetchFromGitHub {
+      owner = "tmux-plugins";
+      repo = "tmux-resurrect";
+      rev = "cff343cf9e81983d3da0c8562b01616f12e8d548";
+      fetchSubmodules = true;
+      hash = "sha256-2ZM23RQps2XO2OYX9NTZj5yIUZEv4ggYzjrJ9RxxLLg=";
+    };
+  });
+
+  continuum = pkgs.tmuxPlugins.continuum.overrideAttrs (_: {
+    version = "unstable-2024-01-20";
+    src = pkgs.fetchFromGitHub {
+      owner = "tmux-plugins";
+      repo = "tmux-continuum";
+      rev = "0698e8f4b17d6454c71bf5212895ec055c578da0";
+      hash = "sha256-W71QyLwC/MXz3bcLR2aJeWcoXFI/A3itjpcWKAdVFJY=";
+    };
+  });
+in
 
 {
-  imports = [ inputs.tmux-which-key.homeManagerModules.default ];
+  xdg.dataFile."${tmuxWhichKeyPluginPath}/init.tmux".source = tmuxWhichKeyInit;
 
   programs.tmux = {
     enable = true;
@@ -18,20 +75,26 @@
     historyLimit = 50000;
 
     tmuxp.enable = true;
-    tmux-which-key = {
-      enable = true;
-    };
-
     plugins = with pkgs.tmuxPlugins; [
       pain-control
       vim-tmux-navigator
       open
       {
-        plugin = tmux-thumbs;
+        plugin = tmuxWhichKeyPackage;
         extraConfig = ''
-          set -g @thumbs-key F
+          set -g @tmux-which-key-xdg-enable 1;
+          set -g @tmux-which-key-disable-autobuild 1
+          set -g @tmux-which-key-xdg-plugin-path "${tmuxWhichKeyPluginPath}"
         '';
       }
+      fingers
+      # {
+      #   # https://github.com/fcsonline/tmux-thumbs/issues/91
+      #   plugin = tmux-thumbs;
+      #   extraConfig = ''
+      #     set -g @thumbs-key F
+      #   '';
+      # }
       {
         plugin = inputs.tmux-powerkit.packages.${pkgs.stdenv.hostPlatform.system}.default;
         extraConfig = ''

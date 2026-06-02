@@ -60,10 +60,6 @@
       url = "github:fabioluciano/tmux-powerkit";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    tmux-which-key = {
-      url = "github:alexwforsythe/tmux-which-key";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     # utils
     flake-utils.url = "github:numtide/flake-utils";

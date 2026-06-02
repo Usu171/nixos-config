@@ -15,7 +15,6 @@ let
 
   commonOverlays = [
     inputs.nix-alien.overlays.default
-    inputs.tmux-which-key.overlays.default
   ];
 
   eachSystem = f: lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});

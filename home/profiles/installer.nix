@@ -1,5 +1,4 @@
 {
-  flakeRoot,
   lib,
   username,
   homeDirectory,
@@ -9,17 +8,11 @@
 {
   imports = [
     ../shared
+    ../dotfiles-base.nix
   ];
 
   home.username = lib.mkForce username;
   home.homeDirectory = lib.mkForce homeDirectory;
-
-  home.file.".config/nvim" = {
-    source = flakeRoot + /dotfiles/.config/nvim;
-    recursive = true;
-  };
-
-  home.file.".config/zellij/config.kdl".source = flakeRoot + /dotfiles/.config/zellij/config.kdl;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
