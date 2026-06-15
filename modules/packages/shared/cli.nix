@@ -58,5 +58,7 @@
     # systemd
     isd
     systemctl-tui
+
+    gh
   ];
 }
