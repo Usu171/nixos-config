@@ -43,6 +43,7 @@ source <(fzf --zsh)
 compdef _ssh scp
 compdef _ssh sftp
 compdef _rsync rsync
+compdef _tmux tmux
 
 # 修复？ https://github.com/carapace-sh/carapace/issues/1177
 # 会导致z和cd之外的路径$realpath为空 preview出问题
